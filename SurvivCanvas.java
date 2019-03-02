@@ -1,21 +1,33 @@
+//user input assistance provided by https://examples.javacodegeeks.com/desktop-java/awt/event/simple-key-press-listener/
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
 public class SurvivCanvas{
-	Ball ball1;
-		Ball ball2;
+		public static int movex = 0;
+		public static int movey = 0;
+		public static int incriment = 3;
+		Ball ball1;
 		JFrame frame;
 
 		public SurvivCanvas(int x,int y){
 			frame = new JFrame();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setSize(600, 600);
-			ball1 = new Ball(x,y,Color.RED);
+			Color tan = new Color(255,222, 173);
+			ball1 = new Ball(x,y,tan);
 			frame.add(ball1);
 			frame.setVisible(true);
-			Color tan = new Color(255,222, 173);
-			ball1.setColor(tan);
+			//stuff needed for user input
+			JTextField textField = new JTextField();
+			textField.addKeyListener(new MKeyListener());
+			frame.add(textField);
+			frame.setSize(600, 600);
+
 
 
 		}
@@ -70,15 +82,40 @@ public class SurvivCanvas{
 
 
 	    	}
-	}
-	public static void main(String[] args){
-		SurvivCanvas survivCanvas = new SurvivCanvas(300,200);
-				for (int i=1;i<100;i++){
-					survivCanvas.moveBall(i,100);
-					survivCanvas.delay(5);
-					survivCanvas.repaint();
-				}
+	}//this is for checking for user input and if the input is a command to move the person
+		class MKeyListener extends KeyAdapter {
 
+		   @Override
+		    public void keyPressed(KeyEvent event) {
+
+			char ch = event.getKeyChar();
+			switch(ch){
+				case 'w': System.out.println("Character moves up");
+						  movey-=incriment;
+						  break;
+				case 'a': System.out.println("Character moves left");
+						  movex-=incriment;
+						  break;
+				case 's': System.out.println("Character moves down");
+						  movey+=incriment;
+						  break;
+				case 'd': System.out.println("Character moves right");
+						  movex+=incriment;
+			}
+
+
+	    }
+}
+	public static void main(String[] args)throws Exception{
+
+		SurvivCanvas survivCanvas = new SurvivCanvas(300,200);
+		boolean inGame = true;
+		while(inGame){
+		survivCanvas.moveBall(movex,movey);
+		survivCanvas.delay(5);
+		survivCanvas.repaint();
+		}
 	}
+
 }
 
