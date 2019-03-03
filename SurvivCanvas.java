@@ -1,13 +1,14 @@
 //user input assistance provided by https://examples.javacodegeeks.com/desktop-java/awt/event/simple-key-press-listener/
+//look into https://www.quora.com/How-can-we-run-a-Java-program-into-an-HTML-coded-website for creating html selection screen(after working 1 v All)
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Color;
-//import javax.imageio.ImageIO;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 public class SurvivCanvas{
+		//class variables for the program
 		public static int movex = 0;
 		public static int movey = 0;
 		public static int incriment = 3;
@@ -87,8 +88,11 @@ public class SurvivCanvas{
 
 		   @Override
 		    public void keyPressed(KeyEvent event) {
+			char ch2 = event.getKeyChar();
 
 			char ch = event.getKeyChar();
+			if(ch2=='m'&&ch=='n')
+				System.out.println("It can go diagnally");
 			switch(ch){
 				case 'w': System.out.println("Character moves up");
 						  movey-=incriment;
@@ -103,6 +107,14 @@ public class SurvivCanvas{
 						  movex+=incriment;
 			}
 
+			 if (event.getKeyCode() == KeyEvent.VK_UP)
+				movey-=incriment;
+			if(event.getKeyCode()==KeyEvent.VK_DOWN)
+				movey+=incriment;
+			if(event.getKeyCode()==KeyEvent.VK_LEFT)
+				movex-=incriment;
+			if(event.getKeyCode()==KeyEvent.VK_RIGHT)
+				movex+=incriment;
 
 	    }
 }
