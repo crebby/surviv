@@ -11,7 +11,12 @@ public class SurvivCanvas{
 		//class variables for the program
 		public static int movex = 0;
 		public static int movey = 0;
-		public static int incriment = 3;
+		public static int incriment = 4;
+		public static int numOfNormBushes = 1;//(int)(Math.random()*89)+23;
+		public static int numOfTrees = (int)(Math.random()*99)+30;
+		public static int[][] nBushesp = new int[numOfNormBushes+1][numOfNormBushes+1];//(int)(Math.random()*100)+1;
+		public static int i =0;
+
 		Ball ball1;
 		JFrame frame;
 
@@ -28,9 +33,10 @@ public class SurvivCanvas{
 			textField.addKeyListener(new MKeyListener());
 			frame.add(textField);
 			frame.setSize(600, 600);
+			//spawn stuff
+			for(int i=0;i<nBushesp.length;i++){
 
-
-
+			}
 		}
 
 		public void moveBall(int x,int y){
@@ -73,17 +79,26 @@ public class SurvivCanvas{
 				c=color;
 			}
 
-
 			 public void paintComponent(Graphics g) {
 			 	super.paintComponent(g);
+			    //main guy
+			    int s = 50;
 			    g.setColor(c);
-			    g.fillOval(xPos,yPos, 50, 50);
+			    g.fillOval(xPos,yPos, s,s );
+			    //each normal bush
+			    g.setColor(new Color(0f,.5f,0f,.6665f ));
+				g.fillOval(nBushesp[0][0],nBushesp[0][1],s+8,s+8);
+				//trees
+
+			    //crates
+
+			    //weapons(may be divided into sub sections
+			    //background stuff
 			    Color background = new Color(129,170,77);
-			  setBackground(background);//background
-
-
+			  	setBackground(background);//background
 	    	}
-	}//this is for checking for user input and if the input is a command to move the person
+	}
+	//this is for checking for user input and if the input is a command to move the person
 		class MKeyListener extends KeyAdapter {
 
 		   @Override
@@ -130,4 +145,3 @@ public class SurvivCanvas{
 	}
 
 }
-
