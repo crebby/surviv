@@ -69,3 +69,4 @@ Goals-
 2 - get working modifications
 
 **Update Status**
+currently I have made the proper colors for the standard background and character. I have the character moving with arrow keys no problem and with wasd keys(glitchy). this is using the eventlisteners for java. Also have a working bush with proper colors. Goal to have the bush spawn done by close to the end of the month
